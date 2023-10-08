@@ -10,6 +10,11 @@ import Contacts from './sections/contacts';
 import Invoices from './sections/invoices';
 import Form from './sections/form';
 import Calendar from './sections/calendar';
+import Faq from './sections/faq';
+import Bar from './sections/bar';
+import Pie from './sections/pie';
+import Line from './sections/line';
+import Geography from './sections/geography';
 
 
 function App() {
@@ -30,10 +35,11 @@ function App() {
               <Route path='/contacts'   element={<Contacts />} />
               <Route path='/invoices' element={<Invoices />} />
               <Route path='/form' element={<Form />} />
-              {/* <Route path='/bar' element={<Bar />} /> */}
-              {/* <Route path='/line' element={<Line />} /> */}
-              {/* <Route path='/faq' element={<FAQ />} /> */}
-              {/* <Route path='/geography' element={<Geography />} /> */}
+              <Route path='/bar' element={<Bar />} />
+              <Route path='/pie' element={<Pie />} />
+              <Route path='/line' element={<Line />} />
+              <Route path='/faq' element={<Faq />} />
+              <Route path='/geography' element={<Geography />} />
               <Route path='/calendar' element={<Calendar />} />
             </Routes>
           </main>
