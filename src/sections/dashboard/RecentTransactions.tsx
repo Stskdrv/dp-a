@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material"
 import { mockTransactions } from "../../data/mockData"
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@mui/material";
 import { tokens } from "../../theme/theme";
 
 
