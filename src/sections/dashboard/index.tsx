@@ -16,6 +16,8 @@ const Dashboard = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
 
+    const isMobile = window.innerWidth <= 768;
+
     return (
         <Box m="20px">
             {/* HEADER */}
@@ -25,8 +27,10 @@ const Dashboard = () => {
 
             {/* GRID & CHARTS */}
             <Box
-                display="grid"
-                gridTemplateColumns="repeat(12, 1fr)"
+                display={isMobile ? 'flex' : "grid"}
+                flexDirection={isMobile ? 'column' : undefined}
+                width={'100%'}
+                gridTemplateColumns={isMobile ? "1fr" : "repeat(12, 1fr)"}
                 gridAutoRows="140px"
                 gap="20px"
             >
@@ -81,7 +85,7 @@ const Dashboard = () => {
                                 Revenue Generated
                             </Typography>
                             <Typography
-                                variant="h3"
+                                variant="h4"
                                 fontWeight="bold"
                                 color={colors.greenAccent[500]}
                             >

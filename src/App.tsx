@@ -27,7 +27,7 @@ function App() {
         <CssBaseline />
         <div className="app">
           <SideBar />
-          <main className='content'>
+          <main className='content' style={{width: '80vw'}}>
             <Topbar />
             <Routes>
               <Route path='/' element={<Dashboard />} />

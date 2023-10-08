@@ -5,19 +5,19 @@ import { Link } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme/theme";
 import userPic from '../../assets/user.jpg';
-import { 
-    BarChartOutlinedIcon, 
-    CalendarTodayOutlinedIcon, 
-    ContactsOutlinedIcon, 
-    HelpOutlineOutlinedIcon, 
-    HomeOutlinedIcon, 
-    MapOutlinedIcon, 
-    MenuOutlinedIcon, 
-    PeopleOutlinedIcon, 
-    PersonOutlinedIcon, 
-    PieChartOutlineOutlinedIcon, 
-    ReceiptOutlinedIcon, 
-    TimelineOutlinedIcon 
+import {
+    BarChartOutlinedIcon,
+    CalendarTodayOutlinedIcon,
+    ContactsOutlinedIcon,
+    HelpOutlineOutlinedIcon,
+    HomeOutlinedIcon,
+    MapOutlinedIcon,
+    MenuOutlinedIcon,
+    PeopleOutlinedIcon,
+    PersonOutlinedIcon,
+    PieChartOutlineOutlinedIcon,
+    ReceiptOutlinedIcon,
+    TimelineOutlinedIcon
 } from "../../icons/icons";
 
 interface Props {
@@ -27,7 +27,6 @@ interface Props {
     selected: string;
     setSelected: Dispatch<SetStateAction<string>>;
 }
-
 
 const Item = ({ title, to, icon, selected, setSelected }: Props) => {
     const theme = useTheme();
@@ -52,6 +51,7 @@ const Sidebar = () => {
     const colors = tokens(theme.palette.mode);
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [selected, setSelected] = useState("Dashboard");
+    const isMobile = window.innerWidth <= 768;
 
     return (
         <Box
@@ -73,7 +73,10 @@ const Sidebar = () => {
                 },
             }}
         >
-            <ProSidebar  collapsed={isCollapsed}>
+            <ProSidebar collapsed={isCollapsed} style={{
+                height: `${isMobile ? 'auto' : '100%'}`, position: `${isMobile ? 'sticky' : 'inherit'}`,
+                top: `${isMobile ? 0 : undefined}`
+            }}>
                 <Menu iconShape="square">
                     <MenuItem
                         onClick={() => setIsCollapsed(!isCollapsed)}
@@ -135,35 +138,41 @@ const Sidebar = () => {
                             selected={selected}
                             setSelected={setSelected}
                         />
+                        {
+                            !isMobile && (
+                                <>
+                                    <Typography
+                                        variant="h6"
+                                        color={colors.grey[300]}
+                                        sx={{ m: "15px 15px 5px 15px" }}
+                                    >
+                                        Data
+                                    </Typography>
+                                    <Item
+                                        title="Manage Team"
+                                        to="/team"
+                                        icon={<PeopleOutlinedIcon />}
+                                        selected={selected}
+                                        setSelected={setSelected}
+                                    />
+                                    <Item
+                                        title="Contacts Information"
+                                        to="/contacts"
+                                        icon={<ContactsOutlinedIcon />}
+                                        selected={selected}
+                                        setSelected={setSelected}
+                                    />
+                                    <Item
+                                        title="Invoices Balances"
+                                        to="/invoices"
+                                        icon={<ReceiptOutlinedIcon />}
+                                        selected={selected}
+                                        setSelected={setSelected}
+                                    />
+                                </>
+                            )
 
-                        <Typography
-                            variant="h6"
-                            color={colors.grey[300]}
-                            sx={{ m: "15px 15px 5px 15px" }}
-                        >
-                            Data
-                        </Typography>
-                        <Item
-                            title="Manage Team"
-                            to="/team"
-                            icon={<PeopleOutlinedIcon />}
-                            selected={selected}
-                            setSelected={setSelected}
-                        />
-                        <Item
-                            title="Contacts Information"
-                            to="/contacts"
-                            icon={<ContactsOutlinedIcon />}
-                            selected={selected}
-                            setSelected={setSelected}
-                        />
-                        <Item
-                            title="Invoices Balances"
-                            to="/invoices"
-                            icon={<ReceiptOutlinedIcon />}
-                            selected={selected}
-                            setSelected={setSelected}
-                        />
+                        }
 
                         <Typography
                             variant="h6"
@@ -179,13 +188,13 @@ const Sidebar = () => {
                             selected={selected}
                             setSelected={setSelected}
                         />
-                        <Item
+                        { !isMobile &&  <Item
                             title="Calendar"
                             to="/calendar"
                             icon={<CalendarTodayOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
-                        />
+                        />}
                         <Item
                             title="FAQ Page"
                             to="/faq"
@@ -201,13 +210,13 @@ const Sidebar = () => {
                         >
                             Charts
                         </Typography>
-                        <Item
+                        { !isMobile &&  <Item
                             title="Bar Chart"
                             to="/bar"
                             icon={<BarChartOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
-                        />
+                        />}
                         <Item
                             title="Pie Chart"
                             to="/pie"
@@ -215,20 +224,20 @@ const Sidebar = () => {
                             selected={selected}
                             setSelected={setSelected}
                         />
-                        <Item
+                       { !isMobile &&   <Item
                             title="Line Chart"
                             to="/line"
                             icon={<TimelineOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
-                        />
-                        <Item
+                        />}
+                        { !isMobile &&  <Item
                             title="Geography Chart"
                             to="/geography"
                             icon={<MapOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
-                        />
+                        />}
                     </Box>
                 </Menu>
             </ProSidebar>
