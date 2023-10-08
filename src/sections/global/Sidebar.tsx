@@ -73,7 +73,7 @@ const Sidebar = () => {
                 },
             }}
         >
-            <ProSidebar style={{ height: '100vh' }} collapsed={isCollapsed}>
+            <ProSidebar  collapsed={isCollapsed}>
                 <Menu iconShape="square">
                     <MenuItem
                         onClick={() => setIsCollapsed(!isCollapsed)}
